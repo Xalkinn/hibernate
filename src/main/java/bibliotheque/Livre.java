@@ -1,9 +1,13 @@
 package bibliotheque;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +23,21 @@ public class Livre {
 
 	@Column
 	private String auteur;
+	
+	@ManyToMany(mappedBy = "livreAchete")
+	private List<Client> acheteurs = new ArrayList<Client>();
+
+	public List<Client> getAcheteurs() {
+		return acheteurs;
+	}
+
+	public void setAcheteurs(List<Client> acheteurs) {
+		this.acheteurs = acheteurs;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getTitre() {
 		return titre;

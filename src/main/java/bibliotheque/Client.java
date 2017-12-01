@@ -1,9 +1,13 @@
 package bibliotheque;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -22,7 +26,30 @@ public class Client {
 	private String prenom;
 
 	@ManyToOne
-	private Livre livre_prefere;
+	private Livre livrePrefere;
+	
+	@ManyToMany
+	private List<Livre> livreAchete = new ArrayList<Livre>();
+
+	public Livre getLivrePrefere() {
+		return livrePrefere;
+	}
+
+	public void setLivrePrefere(Livre livrePrefere) {
+		this.livrePrefere = livrePrefere;
+	}
+
+	public List<Livre> getLivreAchete() {
+		return livreAchete;
+	}
+
+	public void setLivreAchete(List<Livre> livreAchete) {
+		this.livreAchete = livreAchete;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getNom() {
 		return nom;
@@ -41,11 +68,11 @@ public class Client {
 	}
 
 	public Livre getLivre_prefere() {
-		return livre_prefere;
+		return livrePrefere;
 	}
 
-	public void setLivre_prefere(Livre livre_prefere) {
-		this.livre_prefere = livre_prefere;
+	public void setLivre_prefere(Livre livrePrefere) {
+		this.livrePrefere = livrePrefere;
 	}
 
 	public Long getId() {
